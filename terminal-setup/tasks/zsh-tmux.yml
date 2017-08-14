@@ -12,7 +12,8 @@
   when: installation|success
   register: cloning
   sudo: no
-  #- name: Set zsh as default shell
-  #shell: chsh -s $(which zsh)
-  # when: cloning|success
-  # sudo: yes
+
+- name: Set zsh as default shell
+  shell: chsh -s $(which zsh)
+  when: cloning|success
+  sudo: yes
