@@ -1,0 +1,22 @@
+---
+- name: Install Vundle
+  git:
+    repo=https://github.com/VundleVim/Vundle.vim.git
+    dest=~/.vim/bundle/Vundle.vim
+  register: vundle_clone
+  sudo: no
+
+- name: Copy Vundle install
+  copy:
+    src: vundle.sh
+    dest: ~/.dotfiles/
+    mode: 0744
+  when: vundle_clone|success
+  register: cp_vundle
+  sudo: no
+
+- name: Install Plugins
+  shell: sh vundle.sh chdir=~/.dotfiles
+  when: cp_vundle|success
+  sudo: no
+  ignore_errors: True 

@@ -1,0 +1,5 @@
+---
+- name: Copy Theme
+  shell: cp ~/.dotfiles/lambda-mod-infinite.zsh-theme ~/.oh-my-zsh/themes/
+  when: cloned|success
+  sudo: no

@@ -1,0 +1,27 @@
+---
+- name: Installing zsh, tmux and git
+  apt: pkg=zsh,git,tmux state=latest
+  register: installation
+
+- name: Cloning  oh-my-zsh
+  git:
+    repo=https://github.com/robbyrussell/oh-my-zsh
+    dest=~/.oh-my-zsh
+  when: installation|success
+  register: cloning
+  sudo: no
+  #
+  #- name: Download zshrc
+  #  get_url:
+  #    url: https://raw.githubusercontent.com/Infinitetutts/dotfiles/master/.zshrc
+  #    dest: ~/.zshrc
+  #    mode: 0664
+  #  when: cloning|success
+  #  register: download
+  #  sudo: no
+  #
+  #
+  #- name: Set zsh as default shell
+  #shell: chsh -s $(which zsh)
+  # when: cloning|success
+  # sudo: yes

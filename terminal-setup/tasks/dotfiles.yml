@@ -1,0 +1,13 @@
+---
+- name: Cloning dotfiles
+  git:
+      repo: https://github.com/Infinitetutts/dotfiles
+      dest: ~/.dotfiles
+      update: True
+  sudo: no
+  register: cloned
+  
+- name: Linking dotfiles
+  shell: sh install.sh chdir=~/.dotfiles
+  when: cloned|success
+  sudo: no

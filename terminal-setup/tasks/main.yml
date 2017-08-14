@@ -1,0 +1,6 @@
+---
+- include: zsh-tmux.yml
+- include: dotfiles.yml
+- include: theme.yml
+- include: fonts.yml
+- include: vim-plugins.yml
